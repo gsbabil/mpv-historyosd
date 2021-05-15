@@ -124,7 +124,7 @@ function render()
 		local item_text = item
 		
 		if opts.full_paths ~= true then
-			item_text = item_text:match("([%a%d-_.%[%]%s]+%..*)$")
+			item_text = item_text:match("([%a%d-_.%[%]%(%)%s]+%..*)$")
 		end
 		
 		ass:append(prefix .. item_text .. "\\N")
