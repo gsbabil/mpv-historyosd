@@ -4,7 +4,7 @@ local opts = {
 	key_moveup = "UP WHEEL_UP",
 	key_movedown = "DOWN WHEEL_DOWN",
 	key_playfile = "MBTN_LEFT ENTER",
-	max_history = 5,
+	max_history = 10,
 	font_size = 24,
 	full_paths = false,
 }
@@ -29,10 +29,7 @@ end
 mp.register_event('file-loaded', function()
 	close_menu()
 
-    local title, fp
-
-    title = mp.get_property('media-title')
-    title = (title == mp.get_property('filename') and '' or (' (%s)'):format(title))
+    local fp
 
     fp = io.open(history_path, 'r')
 	
@@ -109,6 +106,11 @@ function load_history()
 	fp:close()
 end
 
+function fileName(path)
+    local lastslashpos = (path:reverse()):find("[%\\%/]")
+    return (path:sub(1 - lastslashpos))
+end
+
 function render()
 
 	local font_size = opts.font_size
@@ -124,7 +126,7 @@ function render()
 		local item_text = item
 		
 		if opts.full_paths ~= true then
-			item_text = item_text:match("([%a%d-_.%[%]%(%)%s]+%..*)$")
+			item_text = fileName(item_text)--item_text:match("([%a%d-_.%[%]%(%)%s]+%..*)$")
 		end
 		
 		ass:append(prefix .. item_text .. "\\N")
