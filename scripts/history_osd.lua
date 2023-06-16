@@ -1,11 +1,10 @@
 local opts = {
-	
 	key_closemenu = "ESC",
 	key_moveup = "UP WHEEL_UP",
 	key_movedown = "DOWN WHEEL_DOWN",
 	key_playfile = "MBTN_LEFT ENTER",
-	max_history = 10,
-	font_size = 24,
+	max_history = 16,
+	font_size = 40,
 	full_paths = false,
 }
 
