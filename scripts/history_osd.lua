@@ -107,8 +107,10 @@ function load_history()
 end
 
 function fileName(path)
-    local lastslashpos = (path:reverse()):find("[%\\%/]")
-    return (path:sub(1 - lastslashpos))
+  local dirname, filename = path:match('^(.*/)([^/]-)$')
+  dirname = dirname or ''
+  filename = filename or path
+  return filename
 end
 
 function render()
